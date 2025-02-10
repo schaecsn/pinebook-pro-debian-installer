@@ -1,1 +1,1 @@
-deb http://download.opensuse.org/repositories/home:/danielthompson/Debian_Testing  ./
+deb [trusted=yes] https://laban.lysator.liu.se/pub/opensuse/repositories/home:/danielthompson/Debian_Testing  ./
