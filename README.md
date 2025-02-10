@@ -53,8 +53,8 @@ environment.
  * `DRYRUN=y` - Show the commands the installer would "like" to run but
    do not execute any of them.
  * `MMCBLK=<blkdev>` - (deprecated) alias for `BLKDEV=`
- * `RELEASE={buster|bullseye}` - Choose the Debian release (default:
-   `bullseye`)
+ * `RELEASE={buster|bullseye|bookworm|trixie}` - Choose the Debian release
+   (default: `bookworm`; 'trixie` does not work yet)
 
 Support
 -------

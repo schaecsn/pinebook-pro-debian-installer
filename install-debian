@@ -167,7 +167,7 @@ do_debootstrap () {
 do_real_debootstrap () {
 	sudo debootstrap \
 		--arch=${ARCH} \
-		--include ca-certificates,console-setup,cryptsetup-initramfs,initramfs-tools,locales,keyboard-configuration,sudo,u-boot-menu,gnupg \
+		--include ca-certificates,console-setup,cryptsetup-initramfs,initramfs-tools,locales,keyboard-configuration,sudo,u-boot-menu,gnupg,tasksel \
 		${RELEASE} ${SYSIMAGE}
 	if [ -z $DRYRUN ]
 	then
@@ -215,8 +215,8 @@ do_kernel () {
 	then
           sudo install -m644 etc/apt/sources.list.d/kernel-obs.list.${RELEASE} ${SYSIMAGE}/etc/apt/sources.list.d/kernel-obs.list
         else
-          # Use the bullseye kernel for releases we don't know about.
-          sudo install -m644 etc/apt/sources.list.d/kernel-obs.list.bullseye ${SYSIMAGE}/etc/apt/sources.list.d/kernel-obs.list
+          # Use the testing kernel for releases we don't know about.
+          sudo install -m644 etc/apt/sources.list.d/kernel-obs.list.testing ${SYSIMAGE}/etc/apt/sources.list.d/kernel-obs.list
         fi
 	sudo install -m644 etc/apt/trusted.gpg.d/* ${SYSIMAGE}/etc/apt/trusted.gpg.d/
 	sudo install etc/kernel/postinst.d/* ${SYSIMAGE}/etc/kernel/postinst.d/
@@ -321,7 +321,7 @@ do_all () {
 }
 
 ARCH=arm64
-RELEASE=bullseye
+RELEASE=bookworm
 SYSIMAGE="${PWD}/sysimage"
 MMCBLK="$(readlink -f /dev/disk/by-path/platform-fe320000.*mmc)"
 
