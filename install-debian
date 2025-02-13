@@ -211,6 +211,7 @@ do_kernel () {
 	cat etc/default/u-boot.append | sudo tee -a ${SYSIMAGE}/etc/default/u-boot > /dev/null
 	cat etc/initramfs-tools/modules.append | sudo tee -a ${SYSIMAGE}/etc/initramfs-tools/modules > /dev/null
 	sudo install -m644 etc/initramfs-tools/conf.d/* ${SYSIMAGE}/etc/initramfs-tools/conf.d/
+	sudo install -m755 etc/initramfs-tools/hooks/* ${SYSIMAGE}/etc/initramfs-tools/hooks/
         if [ -f etc/apt/sources.list.d/kernel-obs.list.${RELEASE} ]
 	then
           sudo install -m644 etc/apt/sources.list.d/kernel-obs.list.${RELEASE} ${SYSIMAGE}/etc/apt/sources.list.d/kernel-obs.list
@@ -314,8 +315,8 @@ do_all () {
 	do_debootstrap
 	do_mount2
 	do_update
-	do_kernel
 	do_firmware
+	do_kernel
 	do_configure
 	do_tasksel
 }
